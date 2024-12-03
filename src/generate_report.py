@@ -36,6 +36,7 @@ summary_file = 'docs/metrics/resumo_dataset.txt'
 normal_style = styles['Normal']
 title_style = styles['Title']
 heading_style = styles['Heading2']
+body_text_style = styles['BodyText']
 
 # Título do relatório
 title = Paragraph("Metodologia", styles['Title'])
@@ -105,9 +106,116 @@ body_text = (
 )
 content.append(Paragraph(body_text, styles['BodyText']))
 
+# 2. Implementação do Modelo
+subtitle = Paragraph("5. Implementação do Modelo", heading_style)
+content.append(subtitle)
+content.append(Spacer(1, 6))
+
+body_text = (
+    "O algoritmo de K-means foi implementado com diferentes valores de K (número de clusters): K=2, K=3, K=4. "
+    "Para cada configuração, foram gerados gráficos ilustrando os agrupamentos e calculados os Silhouette Scores para avaliar a qualidade do agrupamento."
+)
+content.append(Paragraph(body_text, body_text_style))
+content.append(Spacer(1, 12))
+
+# 3. Escolha do Número de Clusters
+subtitle = Paragraph("6. Escolha do Número de Clusters", heading_style)
+content.append(subtitle)
+content.append(Spacer(1, 6))
+
+body_text = (
+    
+    " O método do cotovelo mostrou uma redução mais significativa na soma das distâncias intracluster "
+    "ao passar de K=1 para K=2. Porém, após K=2, a diminuição é menos acentuada, sugerindo que K=2 seja uma escolha natural.\n"
+    " \n"
+)
+content.append(Paragraph("Foi aplicado o seguinte método para escolher K:\n", body_text_style))
+content.append(Spacer(1, 12))
+
+content.append(Paragraph("Silhouette Score:", styles['Heading4']))
+content.append(Paragraph("Valores de Silhouette Score foram avaliados para cada K:"))
+content.append(Paragraph("   - K=2: 0.757 (2D), 0.701 (3D)\n"))
+content.append(Paragraph("   - K=3: 0.638 (2D), 0.570 (3D)\n"))
+content.append(Paragraph( "   - K=4: 0.506 (2D), 0.480 (3D)"))
+
+# Resultados e Discussão
+subtitle = Paragraph("Resultados e Discussão", heading_style)
+content.append(subtitle)
+content.append(Spacer(1, 6))
+
+# Resultados para K=2
+subtitle = Paragraph("Resultados para K=2", normal_style)
+content.append(subtitle)
+content.append(Spacer(1, 6))
+
+body_text = (
+    "Silhouette Score: 0.757 (2D) e 0.701 (3D)\n"
+    "Observação: O agrupamento separa os dados em dois conjuntos principais, correspondendo a duas grandes divisões naturais nos dados. "
+    "Este modelo reflete bem os padrões gerais, com alta coesão intracluster e boa separação entre clusters. Indicado para quando queremos uma visão simplificada e geral dos dados."
+)
+content.append(Paragraph(body_text, body_text_style))
+content.append(Spacer(1, 12))
+content.append(Image("docs/graphs/clusters2Dk=2.png", width=400, height=300))
+content.append(Image("docs/graphs/clusters3Dk=2.png", width=400, height=300))
+
+# Resultados para K=3
+subtitle = Paragraph("Resultados para K=3", normal_style)
+content.append(subtitle)
+content.append(Spacer(1, 6))
+
+body_text = (
+    "Silhouette Score: 0.638 (2D) e 0.570 (3D)\n"
+    "Observação: O agrupamento identifica um cluster muito grande e dois menores. "
+    "Embora tenha reduzido a qualidade do agrupamento (medida pelo Silhouette Score), essa configuração pode ser útil em situações onde há necessidade de um nível intermediário de granularidade."
+)
+content.append(Paragraph(body_text, body_text_style))
+content.append(Spacer(1, 12))
+content.append(Image("docs/graphs/clusters2Dk=3.png", width=400, height=300))
+content.append(Image("docs/graphs/clusters3Dk=3.png", width=400, height=300))
+
+# Resultados para K=4
+subtitle = Paragraph("Resultados para K=4", normal_style)
+content.append(subtitle)
+content.append(Spacer(1, 6))
+
+body_text = (
+    "Silhouette Score: 0.506 (2D) e 0.480 (3D)\n"
+    "Observação: O modelo divide os dados em quatro clusters de tamanhos semelhantes. "
+    "Apesar de fornecer maior granularidade, o baixo Silhouette Score indica que os clusters podem estar menos bem definidos, com maior sobreposição entre eles."
+)
+content.append(Paragraph(body_text, body_text_style))
+content.append(Spacer(1, 12))
+content.append(Image("docs/graphs/clusters2Dk=4.png", width=400, height=300))
+content.append(Image("docs/graphs/clusters3Dk=4.png", width=400, height=300))
+
+# Conclusão e Trabalhos Futuros
+subtitle = Paragraph("Conclusão e Trabalhos Futuros", heading_style)
+content.append(subtitle)
+content.append(Spacer(1, 6))
+
+body_text = (
+    "Este projeto demonstrou a eficácia da aplicação do algoritmo K-means para identificar padrões em dados de atividades humanas "
+    "coletados com sensores de smartphones. A análise revelou que K=2 é a configuração mais adequada para este conjunto de dados, "
+    "garantindo uma boa separação intracluster e maior simplicidade interpretativa. As técnicas de redução de dimensionalidade como PCA foram "
+    "cruciais para a visualização e análise dos dados de alta dimensionalidade.\n\n"
+    "Trabalhos futuros podem incluir a exploração de algoritmos alternativos de clustering, como DBSCAN ou GMM, para lidar melhor com distribuições "
+    "irregulares e sobreposição de clusters. Além disso, o uso de métodos de validação cruzada pode ajudar a garantir a robustez dos resultados. "
+    "Uma análise mais detalhada das variáveis com distribuições irregulares também pode fornecer insights adicionais sobre os dados."
+)
+content.append(Paragraph(body_text, body_text_style))
+content.append(Spacer(1, 12))
+
+# Referências
+subtitle = Paragraph("Referências", heading_style)
+content.append(subtitle)
+content.append(Spacer(1, 6))
+content.append(Paragraph( "1. Anguita, D., Ghio, A., Oneto, L., Parra, X., & Reyes-Ortiz, J. L. (2013). Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine. International Workshop of Ambient Assisted Living (IWAAL 2012). Springer, 2013.\n\n"))
+content.append(Spacer(1, 5))
+content.append(Paragraph("2. Repositório UCI Machine Learning: Human Activity Recognition Using Smartphones Dataset. Disponível em: https://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones\n\n"))
+content.append(Spacer(1, 5))
+content.append(Paragraph(    "3. Sklearn Documentation: Clustering Metrics. Disponível em: https://scikit-learn.org/stable/modules/clustering.html"))
+
 # Construindo o PDF
 document.build(content)
 
 print(f"Relatório criado com sucesso: {pdf_file}")
-
-

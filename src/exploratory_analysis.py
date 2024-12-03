@@ -5,15 +5,14 @@ from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 import seaborn as sns
 
-
 #Carregamento dos dados de treino, cada valor delimitado por espaço e eles nao possuem rotulos
 data = pd.read_csv('data/X_train.txt', sep='\\s+', header=None)
 
 def main():
-    #initial_analysis()
-    #visualizeData2D()
+    initial_analysis()
+    visualizeData2D()
     visualizeData3D()
-    #visualizeDistribution()
+    visualizeDistribution()
 
 def initial_analysis():
     # Adicionar o head do dataset ao resumo
